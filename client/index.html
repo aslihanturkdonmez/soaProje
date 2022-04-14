@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client</title>
+</head>
+<body>
+    <!-- <p>İstek gönderildi. Cevap için konsola bakınız</p> -->
+    Num 1: <input type="text" name="fname" value="1" id="num1"><br><br>
+    Num 2: <input type="text" name="lname" value="5" id="num2"><br><br>
+
+    <button type="submit" onClick="getResult()">İstek Gönder</button>
+    <p id="result"></p>
+    <p id="conclusion"></p>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+
+    const getResult = async () => {
+        let num1 = document.getElementById("num1").value;
+        let num2 = document.getElementById("num2").value;
+        const result = await axios.get('http://127.0.0.1:3000/', {params : {num1, num2}})
+        document.getElementById("result").innerHTML ="Cevap: "+ result.data;
+        document.getElementById("conclusion").innerHTML =`${num1} ve ${num2} toplandığında ${result.data} elde ederiz`
+        console.log(`${num1} ve ${num2} toplandığında ${result.data} elde ederiz`);
+    }
+</script>
+</html>
+
+
